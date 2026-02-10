@@ -33,8 +33,8 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-const server = app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`)
+const server = app.listen(PORT, '0.0.0.0',() => {
+    console.log(`Server running on ${PORT}`)
 });
 
 // Unhandled Promise Rejection
