@@ -1,11 +1,20 @@
-const mongoose = require('mongoose');
-const MONGO_URI = process.env.MONGO_URI;
+const mongoose = require("mongoose");
 
-const connectDatabase = () => {
-    mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-        .then(() => {
-            console.log("Mongoose Connected");
-        });
-}
+const MONGO_URI =
+  process.env.MONGO_URI || "mongodb://localhost:27017/flipkart";
+
+const connectDatabase = async () => {
+  try {
+    await mongoose.connect(MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log("✅ MongoDB connected successfully");
+  } catch (error) {
+    console.error("❌ MongoDB connection failed:", error.message);
+    process.exit(1);
+  }
+};
 
 module.exports = connectDatabase;
